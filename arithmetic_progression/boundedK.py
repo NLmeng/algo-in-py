@@ -9,7 +9,7 @@ def findCK(Array, K):
         return ValueError('Invalid Array Length')
 
     prev = Array[0]
-    curr_c = last + 1
+    curr_c = last - first
     ind = 1
     while ind < n:
         curr_c = min(curr_c, Array[ind] - prev)
