@@ -16,21 +16,23 @@ from math import ceil
 
 # def findInSplit(sub, startIndex, endIndex, c):
 #     missing = []
-#     print("S")
+#     print(startIndex, endIndex)
 #     if endIndex - startIndex == 1:
 #         start = sub[startIndex]
 #         end   = sub[endIndex]
 #         while start + c < end:
-#             print("x")
 #             start = start + c
 #             missing.append(start)
 #     else:
-#         mid  = (endIndex + startIndex) // 2
+#         midIndex = (startIndex+endIndex) // 2
 
-#         if sub[startIndex] + c < sub[mid]:
-#             missing.append(findInSplit(sub, startIndex, mid, c))
-#         if sub[mid] + c < sub[endIndex]:
-#             missing.append(findInSplit(sub, mid, endIndex, c))
+#         if sub[midIndex] - sub[startIndex] == c*(midIndex-startIndex):
+#             missing.append(findInSplit(sub, midIndex, endIndex, c))
+#         elif sub[endIndex] - sub[midIndex] == c*(endIndex-midIndex):
+#             missing.append(findInSplit(sub, startIndex, midIndex, c))
+#         else:
+#             missing.append(findInSplit(sub, startIndex, midIndex, c))
+#             missing.append(findInSplit(sub, midIndex, endIndex, c))
 
 #     return missing
 
@@ -70,6 +72,7 @@ def findFromMid(sub, startIndex, endIndex, c):
         return missing
 
     while startIndex < endIndex-1:
+        print("a")
         midIndex = (startIndex+endIndex) // 2
         if sub[midIndex] - sub[startIndex] == c*(midIndex-startIndex):
             startIndex = midIndex
@@ -84,12 +87,14 @@ def findFromMid(sub, startIndex, endIndex, c):
         
 #
 # 
+arr = [3,13]
+print("The missing elements are", findAll(arr, 9)); 
 arr = [0, 4, 10]; 
 print("The missing elements are", findAll(arr, 3)); 
 arr = [3, 4, 13]; 
 print("The missing elements are", findAll(arr, 8)); 
-arr = [3,13]
-print("The missing elements are", findAll(arr, 9)); 
+arr = [3,12,27]
+print("The missing elements are", findAll(arr, 6)); 
 arr = [4, 336, 834, 1000]
 print("The missing elements are", findAll(arr, 3)); 
 arr = [4, 170, 336, 1000]
@@ -98,8 +103,6 @@ arr = [0,20,50,70,100]
 print("The missing elements are", findAll(arr, 6)); 
 arr = [3,6,12,18,24,27]
 print("The missing elements are", findAll(arr, 3)); 
-arr = [3,12,27]
-print("The missing elements are", findAll(arr, 6)); 
 arr = [4, 10, 13, 19, 28, 31, 40, 52]
 print("The missing elements are", findAll(arr, 9)); 
 #
