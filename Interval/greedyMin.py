@@ -1,10 +1,4 @@
 
-
-
-from operator import ne
-from re import I
-
-
 def mergeSortLFF(nlist, start, end):
     #sorts the list from indexes start to end - 1 inclusive
     if end - start > 1:
@@ -41,11 +35,10 @@ def mergeLFF(nlist, start, mid, end):
 def greedyMin(V):
     mergeSortLFF(V,0,len(V))
     V.reverse()
-    # print(V)
     currentMin = []
     index = 0
-    currentTime = V[index][0]
-    currentBest = V[index][0]
+    pivot = V[index][0]
+    currentEarliest = V[index][0]
 
     curr = 0
     while curr < len(V):
@@ -54,17 +47,17 @@ def greedyMin(V):
         if next >= len(V):
             currentMin.append(V[index])
         # check overlap
-        elif V[next][1] > currentTime:
-            if V[next][0] < currentBest:
-                currentBest = V[next][0]
+        elif V[next][1] > currentEarliest:
+            if V[next][1] > pivot and (currentEarliest > V[next][0]):
+                currentEarliest = V[next][0]
                 index = next
         # not overlap
         else:
-            # not overlapping with earliest
-            if V[next][1] <= currentBest:
+            # a new shift, otherwise one of the previous shift still overlaps
+            if V[next][1] <= currentEarliest:
                 currentMin.append(V[index])
-                currentBest = V[next][0]
-                currentTime = V[next][0]
+                currentEarliest = V[next][0]
+                pivot = V[next][0]
                 index = next
         
         curr = next
@@ -72,10 +65,14 @@ def greedyMin(V):
 
     return currentMin
 
+print(2, greedyMin([(8,10), (8,9), (7,9), (0,2)]))
+print(2, greedyMin([(1,2), (1,6), (2,3), (4,12), (6,7), (8,9)]))
 print(1, greedyMin([(0,5)]))
 print(2, greedyMin([(0,5), (5,8)]))
 print(1, greedyMin([(0,6), (5,8), (7,10)]))
 print(3, greedyMin([(0,4), (4,6), (6,10)]))
+print(1, greedyMin([(0,3), (2,7), (6,10)]))
+print(1, greedyMin([(0,3), (2,7), (5,7), (6,10)]))
 print(2, greedyMin([(1,3),(2,4),(3,4),(3,5),(4,5),(4,6),(5,7)]))
 print(3, greedyMin([(0,2), (1,4), (3,10), (5,6), (7,8), (9,10), (12,15)]))
 print(2, greedyMin([(1,4), (3,5), (0,6), (4,7), (3,8), (5,9), (6,10), (8,11)]))
