@@ -33,6 +33,10 @@ def listBadges(P):
     return badges
 
 
+# P[p(0),p(1),...,p(n)]
+# must always collect n
+# some index i > j, collectable only if |p(i) - p(j)| < |i - j|
+# goal: maximize number collected and must always collect n
 P = [0, 1,-1]
 print(maxBadge(P), "\n", OPT, "PICK:", listBadges(P))
 

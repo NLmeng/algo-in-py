@@ -61,6 +61,10 @@ def planConcerts(A):
         i-=1
     return OPT
 
+
+# A[(small, large))
+# pick one or the other, if large is picked then the previous picked needs to be empty/"N"
+# goal: maximize sum picked
 A = [(10,5), (10,25), (5,30)]
 print(maxProfit(A))
 print(planConcerts(A))
