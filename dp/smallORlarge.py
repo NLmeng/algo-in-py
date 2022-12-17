@@ -12,12 +12,12 @@ def maxProfit(A):
     S[0] = A[0][0]
     
     for i in range(1, n):
+        L[i] = max(A[i][1] + N[i-1], S[i-1], L[i-1])
         S[i] = A[i][0] + max(S[i-1], L[i-1], N[i-1])
-        # L[i] = max(A[i][1] + N[i-1], S[i], L[i-1])
-        L[i] = max(A[i][1] + N[i-1], A[i][0] + S[i-1], L[i-1])
+        # L[i] = max(A[i][1] + N[i-1], A[i][0] + S[i-1], L[i-1])
         N[i] = max(S[i-1], L[i-1], N[i-1])
     print("L:", L, "S:", S, "N:", N)
-    return max(L[n-1], S[n-1], N[n-1])
+    return max(L[n-1], S[n-1], N[n-1])  
 
 # def planConcerts(A):
 #     n = len(A)
@@ -27,9 +27,9 @@ def maxProfit(A):
 #         OPT.append("N")
 #     else:
 #         if L[0] > S[0]:
-#             OPT.append(("L", A[0]))
+#             OPT.append(("L", A[0][1]))
 #         else:
-#             OPT.append(("S", A[0]))
+#             OPT.append(("S", A[0][0]))
 
 #     for i in range(1, n):
 #         if len(A[i]) == 0:
@@ -37,9 +37,9 @@ def maxProfit(A):
 #         else:
 #             if L[i] > S[i]:
 #                 OPT[i-1] = "N"
-#                 OPT.append(("L", A[i]))
+#                 OPT.append(("L", A[i][1]))
 #             else:
-#                 OPT.append(("S", A[i]))
+#                 OPT.append(("S", A[i][0]))
 #     return OPT
 
 def planConcerts(A):
@@ -67,12 +67,16 @@ def planConcerts(A):
 # goal: maximize sum picked
 A = [(10,5), (10,25), (5,30)]
 print(maxProfit(A))
-print(planConcerts(A))
+print(planConcerts(A), "\n")
+
+A = [(41,50), (10,11), (10,21)]
+print(maxProfit(A))
+print(planConcerts(A), "\n")
 
 A = [(10,5), (1,50), (10,5), (10,1)]
 print(maxProfit(A))
-print(planConcerts(A))
+print(planConcerts(A), "\n")
 
 A = [(50,5), (50,100), (9,9), (90,100)]
 print(maxProfit(A))
-print(planConcerts(A))
+print(planConcerts(A), "\n")

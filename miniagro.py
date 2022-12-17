@@ -22,8 +22,10 @@ cv2.imshow("cascade edge", cv2.Canny(sando_image, 125, 175))
 # detect and recognize (edge detection)? harvestable crops and otherwise
 # when no crop (greens)? then robot can turn
 field = cv2.imread("field.jpg")
+cv2.imshow("f", field)
 hsv = cv2.cvtColor(field, cv2.COLOR_BGR2HSV) #convert to hsv
 mask = cv2.inRange(hsv, (36, 0, 0), (70, 255,255)) #search colormap range for green
+
 cv2.imshow("greenonly", mask)
 # print(mask)
 imask = mask>0 #take only white pixels
