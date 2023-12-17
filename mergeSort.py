@@ -1,5 +1,3 @@
-
-
 def merge_sort(nlist, start, end):
     #sorts the list from indexes start to end - 1 inclusive
     if end - start > 1:
